@@ -269,7 +269,7 @@ SWIFT_CLASS("_TtC10matiiOSSDK12DeviceSignal")
 SWIFT_CLASS("_TtC10matiiOSSDK4Mati")
 @interface Mati : NSObject
 + (void)registerWithMerchant:(NSString * _Nonnull)merchant;
-+ (void)openURL:(NSURL * _Nonnull)url options:(NSDictionary<NSString *, id> * _Nonnull)options;
++ (void)openURL:(NSURL * _Nonnull)url options:(NSDictionary * _Nonnull)options;
 + (void)setInfo:(NSString * _Nonnull)info;
 + (void)addShopItemWithName:(NSString * _Nonnull)name price:(float)price quantity:(NSInteger)quantity;
 + (void)addShopItem:(ShopItem * _Nonnull)shopItem;
