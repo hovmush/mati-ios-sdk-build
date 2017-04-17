@@ -1,0 +1,10 @@
+framework module matiiOSSDK {
+  umbrella header "matiiOSSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module matiiOSSDK.Swift {
+    header "matiiOSSDK-Swift.h"
+}
