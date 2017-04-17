@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
-    s.name                = "matiiOSSDK"
+    s.name                = "mati-ios-sdk"
     s.version             = "0.1.0"
-    s.summary             = "MatiiOSSDK for easy pay"
-    s.description         = "A long desctiption of MatiiOSSDK asdfjkasjdkfjksa"
+    s.summary             = "Use Mati for easy pay"
+    s.description         = "User Mati for easy and fast pay."
     s.homepage            = "https://github.com/hovmush/mati-ios-sdk-build"
     s.license             = { type: 'MIT', file: 'LICENSE' }
     s.authors             = "Inomma"
