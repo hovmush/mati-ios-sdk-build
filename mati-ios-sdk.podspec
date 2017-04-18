@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
     s.license             = { type: 'MIT', file: 'LICENSE' }
     s.authors             = "Inomma"
     s.platform            = :ios, "9.0"
-    s.source              = { :git => "https://github.com/hovmush/mati-ios-sdk-build.git",  :tag => "v0.1.0"  }
+    s.source              = { :git => "https://github.com/hovmush/mati-ios-sdk-build.git",  :tag => "0.1.0"  }
     s.frameworks          = 'UIKit'
     s.source_files        = "matiiOSSDK.framework/Headers/*.h"
     s.vendored_frameworks = "matiiOSSDK.framework"

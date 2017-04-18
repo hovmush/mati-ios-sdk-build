@@ -264,35 +264,31 @@ SWIFT_CLASS("_TtC10matiiOSSDK12DeviceSignal")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class ShopItem;
+@protocol MatiDelegate;
+@class Transaction;
 
 SWIFT_CLASS("_TtC10matiiOSSDK4Mati")
 @interface Mati : NSObject
-+ (void)registerWithMerchant:(NSString * _Nonnull)merchant;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, strong) id <MatiDelegate> _Nullable delegate;)
++ (id <MatiDelegate> _Nullable)delegate;
++ (void)setDelegate:(id <MatiDelegate> _Nullable)newValue;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (void)initialize:(NSString * _Nonnull)token SWIFT_METHOD_FAMILY(none);
 + (void)openURL:(NSURL * _Nonnull)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> * _Nonnull)options;
-+ (void)setInfo:(NSString * _Nonnull)info;
-+ (void)addShopItemWithName:(NSString * _Nonnull)name price:(float)price quantity:(NSInteger)quantity;
-+ (void)addShopItem:(ShopItem * _Nonnull)shopItem;
-+ (void)addShopItems:(NSArray<ShopItem *> * _Nonnull)shopItems;
-+ (void)setShopItems:(NSArray<ShopItem *> * _Nullable)shopItems;
-+ (void)removeShopItems;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
++ (Transaction * _Nonnull)newTransaction;
 @end
 
-@protocol MatiDelegate;
 enum MatiButtonStyle : NSInteger;
 
 SWIFT_CLASS("_TtC10matiiOSSDK10MatiButton")
-@interface MatiButton : UIView <UITextFieldDelegate, BankRootDelegate>
-@property (nonatomic, strong) id <MatiDelegate> _Nullable delegate;
+@interface MatiButton : UIView <UITextFieldDelegate>
+@property (nonatomic, strong) Transaction * _Nullable transaction;
 @property (nonatomic) enum MatiButtonStyle style;
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 + (MatiButton * _Nonnull)matiButtonWithStyle:(enum MatiButtonStyle)style;
 - (void)layoutSubviews;
 - (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string;
-- (void)bankAccountAddedWithToken:(NSString * _Nullable)token;
-- (void)bankAccountCancelled;
 @end
 
 typedef SWIFT_ENUM(NSInteger, MatiButtonStyle) {
@@ -303,15 +299,15 @@ typedef SWIFT_ENUM(NSInteger, MatiButtonStyle) {
 
 SWIFT_PROTOCOL("_TtP10matiiOSSDK12MatiDelegate_")
 @protocol MatiDelegate
-- (void)payCompleteWithMatiButton:(MatiButton * _Nonnull)matiButton;
-- (void)payCancelledWithMatiButton:(MatiButton * _Nonnull)matiButton;
+- (void)payCompleteWithTransaction:(Transaction * _Nonnull)transaction;
+- (void)payCancelledWithTransaction:(Transaction * _Nonnull)transaction;
 @end
 
 
 SWIFT_CLASS("_TtC10matiiOSSDK20PhoneNumberFormatter")
 @interface PhoneNumberFormatter : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 + (NSString * _Nonnull)formatNumberWithText:(NSString * _Nonnull)text replacementString:(NSString * _Nonnull)replacementString;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -321,11 +317,24 @@ SWIFT_CLASS("_TtC10matiiOSSDK6Roboto")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class NSNumber;
 
 SWIFT_CLASS("_TtC10matiiOSSDK8ShopItem")
 @interface ShopItem : NSObject
-+ (ShopItem * _Nonnull)shopItemWithName:(NSString * _Nonnull)name price:(float)price quantity:(NSInteger)quantity;
+@property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, strong) NSNumber * _Nullable price;
+@property (nonatomic) NSInteger quantity;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC10matiiOSSDK11Transaction")
+@interface Transaction : NSObject
+@property (nonatomic, copy) NSArray<ShopItem *> * _Nullable shopItems;
+@property (nonatomic, copy) NSString * _Nonnull info;
+@property (nonatomic, strong) NSNumber * _Nonnull taxes;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+- (void)executeWithPhoneNumber:(NSString * _Nullable)phoneNumber;
 @end
 
 
