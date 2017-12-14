@@ -1,10 +1,11 @@
-framework module matiiOSSDK {
-  umbrella header "matiiOSSDK.h"
+framework module MatiiOSSDK {
+  umbrella header "MatiiOSSDK.h"
 
   export *
   module * { export * }
 }
 
-module matiiOSSDK.Swift {
-    header "matiiOSSDK-Swift.h"
+module MatiiOSSDK.Swift {
+    header "MatiiOSSDK-Swift.h"
+    requires objc
 }

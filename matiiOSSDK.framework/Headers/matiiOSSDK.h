@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double matiiOSSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char matiiOSSDKVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <matiiOSSDK/PublicHeader.h>
-
-
